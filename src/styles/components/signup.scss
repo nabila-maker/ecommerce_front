@@ -1,0 +1,47 @@
+
+
+.formSign{
+
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1rem;
+
+    .form-control{
+      border-bottom:2px grey  solid;
+      width: 60%;
+      height: 40px;
+      border-right: none;
+      border-top: none;
+      border-left: none;
+    }
+
+   .form>label{
+       color: grey;
+   }
+
+   a{
+    margin: 1rem;
+    padding: 1rem;
+    position: relative;
+    background-color: white;
+    border: pink 1px solid;
+    color: black;
+    text-decoration: none;
+    width: 40%;
+    text-align: center;
+   }
+
+  a.simpleLink{
+       color: pink;
+   }
+
+   .simpleLink{
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+
+   }
+}
