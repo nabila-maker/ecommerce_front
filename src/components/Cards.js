@@ -29,7 +29,7 @@ function Card({product}){
        <li className="card">
         <div className="data-container">
             <ul>
-                <img src={product.images}></img>
+                <img src={product.images} alt='img'></img>
                 <li>{product.name}</li>
                 <li>{product.description}</li>
                 <li>{product.price}</li>
