@@ -8,6 +8,7 @@ const Userservice = {
     Login : async (user)=>{
         return await api.post('/user/authenticate',user)
     }
+    
 }
 
 export default Userservice;

@@ -4,14 +4,14 @@ import Navigation from '../components/Navigation'
 import Log from "../components/Login";
 import Footer from '../components/Footer';
 
-function Login() {
+function Login(props) {
     return (
         <>
         <div className ="Login">
             <Navigation/>
            
             <h1>Login</h1>
-            <Log/>
+            <Log {...props}/>
         </div>
         <Footer/>
 
@@ -20,3 +20,7 @@ function Login() {
     }
     
     export default Login;
+
+
+
+

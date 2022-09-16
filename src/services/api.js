@@ -7,13 +7,26 @@ const api = axios.create({
   baseURL: `http://localhost:8080/`,
   withCredentials:true,
 
-
 });
 
 api.interceptors.request.use(request=>{
    const state = store.getState();
-  if(request.headers)
-  request.headers["Authorization"]=`Bearer $(state.user.user?.access_token)`;
+   let userData=null
+
+   if(localStorage.getItem('User')){
+     userData=JSON.parse(localStorage.getItem('User'))
+
+   }
+    
+  if(request.headers && userData){
+    
+    const token = userData.expireDate - Date.now <= 30000? userData.refreshToken : userData.token
+  request.headers["Authorization"]=`Bearer ${token}`;
+  console.log(token)
+}
+
+  
+
   return request;
 })
 

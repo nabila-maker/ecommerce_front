@@ -3,8 +3,22 @@ import api from './api';
 
 
 const productService = {
-    getAll : async ()=> api.get(Api.getAll)
+    getAll : async ()=>{
+        return await api.get('/product')
+    },
+
+
+     create : async (data)=>{
     
+    return await api.post('/reservation',data)
+},
+
+getAllByUser : async (data)=>{
+    
+    return await api.post('/reservationAllByUser',data)
 }
+}
+
+
 
 export default productService;

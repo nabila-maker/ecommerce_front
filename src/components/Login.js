@@ -1,11 +1,12 @@
 import Userservice from '../services/Userservice';
 import React,{useState} from 'react';
 import {Link} from "react-router-dom";
-
+import {login} from '../store/user.reducer';
+import { useDispatch } from 'react-redux';
 
  //toast.configure()
 
-function Log() {
+function Log(props) {
 
  
     const [username, setUsername] = useState()
@@ -13,15 +14,21 @@ function Log() {
     const [password, setPassword] = useState()
    
 
-  
+  const dispatch = useDispatch()
    
 // const user = {username, email, password}
 const submit = async (e)=> {
     e.preventDefault();
  
  try {
-  await Userservice.Login({username, email, password})
-console.log("vous etes connecté")
+  const user =  await Userservice.Login({username, email, password})
+  const data = JSON.stringify(user.data)
+  localStorage.setItem('User',data)
+  
+dispatch(login(user.data.user))
+console.log("vous etes connecté",user)
+
+ props.history.push("/")
   
 } catch (err) {
 
