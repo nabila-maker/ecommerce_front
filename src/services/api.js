@@ -20,9 +20,10 @@ api.interceptors.request.use(request=>{
     
   if(request.headers && userData){
     
-    const token = userData.expireDate - Date.now <= 30000? userData.refreshToken : userData.token
+    const token = userData.expireDate - Date.now() <= 30000? userData.refreshToken : userData.token
+console.log(token)
   request.headers["Authorization"]=`Bearer ${token}`;
-  console.log(token)
+
 }
 
   
@@ -34,23 +35,24 @@ api.interceptors.response.use(response=>{
   return response;
 
 },
-async(error)=>{
-  if(error.response.status !==401){
-    return Promise.reject(error);
-  } 
+// async(error)=>{
+//   if(error.response.status !==401){
+//     return Promise.reject(error);
+//   } 
 
-try{
-  const response = await api.get('user/authenticate');
-   store.dispatch(login(response.data))
-  error.hasRefreshedToken=true;
-}
+// try{
+//   const response = await api.get('user/authenticate');
+//    store.dispatch(login(response.data))
+   
+//   error.hasRefreshedToken=true;
+// }
 
-  catch(error){
-    const tokenError =new Error("cannot refresh token");
-    return Promise.reject(tokenError);
+  // catch(error){
+  //   const tokenError =new Error("cannot refresh token");
+  //   return Promise.reject(tokenError);
 
-  }
-})
-
+  // }
+// })
+)
 export default api;
 

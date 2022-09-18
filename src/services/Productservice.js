@@ -13,10 +13,7 @@ const productService = {
     return await api.post('/reservation',data)
 },
 
-getAllByUser : async (data)=>{
-    
-    return await api.post('/reservationAllByUser',data)
-}
+
 }
 
 

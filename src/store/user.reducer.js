@@ -20,7 +20,11 @@ const userSlice = createSlice({
             state.isLogged = false;
         }
     }
-}) 
+});
+
+
+
+
 
 export const {login, logout} = userSlice.actions;
 

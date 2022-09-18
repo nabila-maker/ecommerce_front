@@ -1,5 +1,5 @@
 // eslint-disable-next-line
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useMemo } from 'react';
 import { useSelector,useDispatch } from 'react-redux';
 // eslint-disable-next-line
 import api from '../services/api';
@@ -16,8 +16,10 @@ function Card({product}){
     //  useEffect(() =>[product])
 //   const state = store.getState()
 //   console.log(state.user.user)
-const userId = localStorage.getItem("UserId")
-console.log('hey',userId)
+
+
+const userId = useMemo(()=>JSON.parse(localStorage.getItem("User"))?.user?.id)
+console.log(JSON.parse(localStorage.getItem("User"))?.user)
 
 
 
@@ -25,11 +27,11 @@ console.log('hey',userId)
 // const login = userReducer.
  const addProduct = async() => {
 
-    const  data = {"UserId":userId, "ProductId":product.id}
-    console.log(data)
+    const  data = {productId:product.id}
+    
      await productService.create(data)
         // const userId= login.userId
-
+// console.log(e)
 // console.log('hello',)
     }
 

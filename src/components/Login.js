@@ -3,6 +3,7 @@ import React,{useState} from 'react';
 import {Link} from "react-router-dom";
 import {login} from '../store/user.reducer';
 import { useDispatch } from 'react-redux';
+import {  toast } from 'react-toastify';
 
  //toast.configure()
 
@@ -24,7 +25,8 @@ const submit = async (e)=> {
   const user =  await Userservice.Login({username, email, password})
   const data = JSON.stringify(user.data)
   localStorage.setItem('User',data)
-  
+  console.log(data)
+  toast.success("content de vous revoir");
 dispatch(login(user.data.user))
 console.log("vous etes connecté",user)
 

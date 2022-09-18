@@ -1,7 +1,8 @@
 
 import Navigation from '../components/Navigation';
 import Footer from "../components/Footer";
-import Product from "../components/Product"
+import ReservationProduct from "../components/reservationProduct"
+import "../styles/components/reservationProduct.scss"
 
 
 
@@ -11,7 +12,7 @@ return (
     <div className ="Home">
         
           <Navigation/>
-      <Product />
+      <ReservationProduct />
         <Footer/>
       
 
