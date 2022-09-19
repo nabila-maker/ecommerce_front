@@ -4,13 +4,12 @@ import Userservice from '../services/Userservice';
 import { useSelector,useDispatch } from 'react-redux';
 import { loadReservations } from "../store/reservation.reducer";
 
-
 function ReservationProduct() {
 
 // const [data,setData] = useState([]); //data: stock tout nos appel a la donnée on attant un tableau
-const reservations = useSelector(state => state.reservation)
+ const reservations = useSelector(state => state.reservation.reservations)
 const dispatch = useDispatch()
- 
+
 
    useEffect(()=>{
     const fetchReservations = async() => {

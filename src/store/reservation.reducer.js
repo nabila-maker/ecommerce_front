@@ -12,11 +12,11 @@ const reservationSlice = createSlice({
         loadReservations:(state, action)=>{
          state.reservations = action.payload
         },
-        remove:(state,action)=>{
+        removeReservation:(state,action)=>{
             state.reservations = state.reservations.filter(reservation=> reservation.id !== action.payload);
 
         },
-        validate:(state,action)=>{
+        validateReservation:(state,action)=>{
             const reservationIndex = state.reservations.findIndex(reservation=> reservation.id === action.payload);
             state.reservations[reservationIndex].status = true
             
@@ -28,6 +28,6 @@ const reservationSlice = createSlice({
 
 
 
-export const {loadReservations,remove,validate} = reservationSlice.actions;
+export const {loadReservations,removeReservation,validateReservation} = reservationSlice.actions;
 
 export default reservationSlice.reducer;

@@ -2,29 +2,29 @@ import api from './api';
 
 
 const Userservice = {
-   Signup : async (user)=>{
-        return await api.post('/user',user)
+   Signup : (user)=>{
+        return api.post('/user',user)
     },
-    Login : async (user)=>{
-        return await api.post('/user/authenticate',user)
+    Login : (user)=>{
+        return api.post('/user/authenticate',user)
     },
 
    
 
-    getAllByUser : async (data)=>{
+    getAllByUser : (data)=>{
     
-        return await api.get('/reservationAllByUser',data)
+        return api.get('/reservationAllByUser',data)
     },
    
 
     delete : async (reservationId)=>{
-    
-        return await api.delete(`/reservationAllByUser/?reservationId=${reservationId}`)
+    console.log(await api.delete(`/reservationAllByUser/?reservationId=${reservationId}`))
+        return api.delete(`/reservationAllByUser/?reservationId=${reservationId}`)
     },
 
-    update : async (reservationId)=>{
+    update : (reservationId)=>{
     
-        return await api.put("/reservationAllByUser",{reservationId})
+        return api.put("/reservationAllByUser",{reservationId})
     },
    
 }

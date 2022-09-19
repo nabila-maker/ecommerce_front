@@ -5,24 +5,33 @@ import { useSelector,useDispatch } from 'react-redux';
 // import {Link} from "react-router-dom";
 //import 'react-toastify/dist/ReactToastify.css';
 import Userservice from "../services/Userservice";
-
+import { removeReservation,validateReservation } from "../store/reservation.reducer";
 
 
 function ReservationCard({reservation}){
-   
-console.log(reservation)
+    const dispatch = useDispatch()
+
 
 async function deleteReservation(id) {
-    console.log(id)
-    await Userservice.delete(id)
+    
+   const remove = await Userservice.delete(id)
+   console.log(remove)
+   if(remove.status === 204){
+dispatch(removeReservation(id))
+   }
    
-    // window.location.reload();
 
   };
+
+
   async function validateChallenge(id) {
 
     
-      await Userservice.update(id)
+     const update = await Userservice.update(id)
+     if(update.status === 201){
+        dispatch(validateReservation(id))
+           }
+
     //   toast.warn("Ce challenge a bien été validé",{position: toast.POSITION.TOP_CENTER});
     //   props.history.push("/account/ChallengesValidated")
                        
@@ -37,7 +46,7 @@ async function deleteReservation(id) {
         <div className="data-container">
             <ul>
             <li>{reservation.id}</li> 
-                  <img src={reservation.products.images} alt='img'></img> 
+                 <img src={reservation.products.images} alt='img'></img> 
                 <li>{reservation.products.name}</li>
                 <li>{reservation.products.description}</li>
                 <li>{reservation.products.price}</li> 
