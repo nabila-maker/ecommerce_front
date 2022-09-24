@@ -25,12 +25,12 @@ const submit = async (e)=> {
   const user =  await Userservice.Login({username, email, password})
   const data = JSON.stringify(user.data)
   localStorage.setItem('User',data)
-  console.log(data)
+  console.log(data.id)
   toast.success("content de vous revoir");
 dispatch(login(user.data.user))
 console.log("vous etes connecté",user)
 
- props.history.push("/")
+//  props.history.push("/")
   
 } catch (err) {
 

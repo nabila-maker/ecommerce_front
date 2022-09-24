@@ -1,11 +1,11 @@
 // eslint-disable-next-line
 import React, { useEffect, useState,useMemo } from 'react';
-import { useSelector,useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // eslint-disable-next-line
 import api from '../services/api';
-// import {toast} from "react-toastify";
+ import {ToastContainer,toast} from "react-toastify";
 // import {Link} from "react-router-dom";
-//import 'react-toastify/dist/ReactToastify.css';
+import 'react-toastify/dist/ReactToastify.css';
 import productService from "../services/Productservice"
 import Userservice from "../services/Userservice"
 
@@ -28,15 +28,23 @@ console.log(JSON.parse(localStorage.getItem("User"))?.user)
  const addProduct = async() => {
 
     const  data = {productId:product.id}
+    try{
+         await productService.create(data)
+     toast.success("ce produit est ajouté à vos réservation",{position: toast.POSITION.TOP_CENTER});
+
+    }
+    catch(err){
+        toast.error("Vous avez déjà réservé ce produit",{position: toast.POSITION.TOP_CENTER});
+
+    }
     
-     await productService.create(data)
-        // const userId= login.userId
-// console.log(e)
-// console.log('hello',)
+
     }
 
     
     return (
+        <>
+        <ToastContainer/>
        <li className="card">
         <div className="data-container">
             <ul>
@@ -52,6 +60,7 @@ console.log(JSON.parse(localStorage.getItem("User"))?.user)
         </div>
 
        </li>
+       </>
     );
 };
 

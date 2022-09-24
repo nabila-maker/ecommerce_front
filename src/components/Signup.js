@@ -1,7 +1,7 @@
 import React,{useState} from 'react';
  import {Link} from 'react-router-dom';
-//  import { toast } from 'react-toastify';
-//  import 'react-toastify/dist/ReactToastify.css';
+  import { ToastContainer,toast } from 'react-toastify';
+  import 'react-toastify/dist/ReactToastify.css';
 import Userservice from '../services/Userservice';
 import "../styles/components/signup.scss";
 
@@ -9,6 +9,9 @@ import "../styles/components/signup.scss";
 // toast.configure()
 
 const Signup = (props) => {
+
+   
+
 
     
     const [name, setName] = useState()
@@ -21,15 +24,14 @@ const submit = async (e)=> {
  
  try {
    await Userservice.Signup({name, email, password})
-  console.log("succes")
+   toast.success("cet utilisateur a bien été créér",{position: toast.POSITION.TOP_CENTER});
   props.history.push("/login")
 
-//   toast.error("cet utilisateur a bien été créér",{position: toast.POSITION.TOP_CENTER});
 
 } catch (err) {
 
    console.error(err);
-    //   toast.warn("cet utilisateur existe déjà",{position: toast.POSITION.TOP_CENTER});
+      toast.warn(err.message,{position: toast.POSITION.TOP_CENTER});
 console.log(err.message)
 
 }
@@ -37,6 +39,7 @@ console.log(err.message)
 
     return (
         <>
+        <ToastContainer/>
 
         <form className="formSign">
 

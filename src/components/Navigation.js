@@ -5,8 +5,15 @@ import rose from "../assets/img/rose.png";
 import user from "../assets/img/user.png";
 import "../pages/Signup"
 import "../styles/components/navigation.scss";
+import {useDispatch} from 'react-redux';
+import {logout} from '../store/user.reducer'
 
-function Navigation() {
+function Navigation(props) {
+
+  const dispatch = useDispatch()
+  
+
+
   return (
     <nav className="nav">
       <Link to="/">
@@ -17,6 +24,14 @@ function Navigation() {
         
       <Link to="/signup"><img src={user} alt="user"/></Link>
        </div> 
+       <button exact to="/Logout" className="nav-active" onClick = {()=>{
+                     localStorage.clear()
+                   dispatch(logout())
+                   props.history.push('/login')
+                   
+               }}>
+               Logout
+            </button> 
       
     </nav>
   )
