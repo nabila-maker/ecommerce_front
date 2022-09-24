@@ -1,9 +1,10 @@
 import React from 'react';
-import {BrowserRouter,Switch,Route,} from "react-router-dom"
+import {BrowserRouter,Route,Routes} from "react-router-dom"
   import Signup from './pages/Signup'
   import Log from './pages/login'
  import Home from './pages/home'
   import Reservation from './pages/reservation'
+
  import "./styles/app.scss"
 
  export const App = () => {
@@ -11,16 +12,16 @@ import {BrowserRouter,Switch,Route,} from "react-router-dom"
 
   return (
     
-   <BrowserRouter forceRefresh='true'>
-  
-     <Switch>
+   <BrowserRouter >
+  <Routes>
 
-      <Route exact path="/"  component={Home}/>
-       <Route exact path="/signup" component={Signup}/> 
-       <Route exact path="/login" component={Log}/> 
-       <Route exact path="/reservation" component={Reservation}/> 
-  
-      </Switch>
+      <Route exact path="/"  element={<Home/>}/>
+       <Route exact path="/signup" element={<Signup/>}/> 
+       <Route exact path="/login" element={<Log/>}/> 
+       <Route exact path="/reservation"element={<Reservation/>}/> 
+       <Route exact path="/reservation"element={<Reservation/>}/> 
+      
+      </Routes>
 
 </BrowserRouter>
    

@@ -1,7 +1,7 @@
 
 import Navigation from '../components/Navigation';
 import Footer from "../components/Footer";
-import ReservationProduct from "../components/reservationProduct"
+import ReservationProduct from "../components/ReservationProduct"
 import "../styles/components/reservationProduct.scss"
 
 

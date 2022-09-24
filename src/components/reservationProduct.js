@@ -1,48 +1,50 @@
-import React, {useState,useEffect} from "react";
-import ReservationCard from"./ReservationCard";
-import Userservice from '../services/Userservice';
-import { useSelector,useDispatch } from 'react-redux';
-import { loadReservations } from "../store/reservation.reducer";
+import React from "react";
 
-function ReservationProduct() {
-
-// const [data,setData] = useState([]); //data: stock tout nos appel a la donnée on attant un tableau
- const reservations = useSelector(state => state.reservation.reservations)
-const dispatch = useDispatch()
+import Tabs from '@mui/material/Tabs';
+import Tab from '@mui/material/Tab';
 
 
-   useEffect(()=>{
-    const fetchReservations = async() => {
-        try{
-            const response = await Userservice.getAllByUser()
-            dispatch(loadReservations(response.data)) ;
-            //  console.log(response.data)
-            // setData(response.data)
-        }catch{
-            console.log('error occured')
-        }
-    } 
-    fetchReservations()
+import ReservationList from "./ReservationList";
+
+
+function TabPanel({index,value,reserved}){
+
+return (
+index === value && (<ReservationList reserved={reserved}/>)
+)
+
+}
+
+ function a11yProps(index) {
+    return {
+      id: `simple-tab-${index}`,
+      'aria-controls': `simple-tabpanel-${index}`,
+    };
+  }
+const ReservationProduct = () => {
+
+ 
+    const [value, setValue] = React.useState(0);
+
+
+    const handleChange = (event, newValue) => {
+      setValue(newValue);
+    }
+    
+  return (
+    <>
+      <div>
+        <Tabs value={value} onChange={handleChange}>
+          <Tab label="Reservation" {...a11yProps(0)} />
+          <Tab label="Reservation Précédent" {...a11yProps(1)} />
+        </Tabs>
+      </div>
+      <TabPanel reserved={false} value={value} index={0}/>
+       
+      <TabPanel reserved={true} value={value} index={1}/>
       
-   },[]);
-
-
-
-    return (
-
-         <div className="reservation">
-           { <ul className="reservation-list">
-                {reservations.map((reservation)=>(
-                    <ReservationCard reservation={reservation} key={reservation.id}  />
-                   
-                ))}
-            
-            </ul> }
-            
-           
-         </div>
-    );
-
+    </>
+  );
 };
 
 export default ReservationProduct;
